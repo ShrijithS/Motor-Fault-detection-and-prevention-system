@@ -1,4 +1,3 @@
-"""Run with python -m unittest -v. No Arduino or energized relay required."""
 import json
 import unittest
 from unittest.mock import Mock, patch
