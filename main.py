@@ -1,4 +1,3 @@
-"""Real motor connected to Arduino. Run main2.py for USB-free simulation."""
 import argparse
 from server import ArduinoMotorSystem, run_application
 
