@@ -1,4 +1,3 @@
-"""One small simulation loop; Flask requests share its state through a lock."""
 import logging
 import math
 import threading
