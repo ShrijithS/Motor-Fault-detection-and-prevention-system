@@ -1,4 +1,3 @@
-"""Readings retain their source so simulation is never mistaken for hardware."""
 import math
 
 
