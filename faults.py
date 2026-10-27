@@ -1,6 +1,3 @@
-"""Fault objects share one interface, with different detection rules."""
-
-
 class MotorFault:
     def __init__(self, name):
         self.name = name
