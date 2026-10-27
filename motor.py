@@ -1,4 +1,3 @@
-"""Simplified teaching model, not a calibrated physical motor."""
 import math
 
 
