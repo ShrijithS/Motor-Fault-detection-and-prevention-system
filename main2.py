@@ -1,4 +1,3 @@
-"""Standalone virtual motor. No Arduino, USB cable or physical motor needed."""
 import argparse
 from server import Simulation, run_application
 
