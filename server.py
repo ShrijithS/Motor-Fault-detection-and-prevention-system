@@ -10,7 +10,7 @@ from arduino import ArduinoCommunication
 
 
 class Simulation:
-    """Standalone virtual motor: never opens or writes to a USB port."""
+
     def __init__(self):
         self.motor = DCMotor()
         self.protection = MotorProtectionSystem(self.motor)
@@ -66,7 +66,7 @@ class Simulation:
 
 
 class ArduinoMotorSystem:
-    """Real motor mode: all displayed measurements come from the board."""
+    
     def __init__(self, port, baud=115200):
         self.arduino = ArduinoCommunication(port, baud)
         self.lock = threading.Lock()
@@ -116,7 +116,6 @@ class ArduinoMotorSystem:
                     mode='hardware', source='arduino', error=self.last_error or self.arduino.error)
 
     def action(self, command, data):
-        # Simulation injections never reach a real motor.
         if command not in ('ON', 'OFF', 'RESET'):
             raise ValueError('Fault injection and simulated load controls are available only in main2.py')
         if not self.arduino.is_connected():
@@ -133,7 +132,6 @@ class ArduinoMotorSystem:
 
 
 def run_application(system, http_port):
-    """Shared web startup; each system supplies its own tick/state/action methods."""
     def update_loop():
         previous = time.monotonic()
         while not system.stopped.wait(0.1):
@@ -173,7 +171,6 @@ def create_app(simulation):
 
     @app.post('/api/action')
     def action():
-        # Reject browser requests originating from another website.
         origin = request.headers.get('Origin')
         if origin and origin != request.host_url.rstrip('/'):
             return jsonify(error='Cross-origin control is disabled'), 403
